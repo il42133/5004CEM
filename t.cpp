@@ -1,3 +1,6 @@
+//Code adapted from http://www.csc.villanova.edu/~mdamian/threads/hellomany.txt
+//and https://stackoverflow.com/questions/22003083/passing-array-as-argument-to-a-new-thread-in-c
+
 #include <iostream>
 #include <cstdlib>
 #include <pthread.h>
@@ -46,25 +49,25 @@ int main () {
     cin >> y;
     int nums[2] = {x, y};
     for(i = 0; i < NUM_THREADS; i++) {
-        if (i == 0) {
+        if (i == 0) { //Calls add function
             rc = pthread_create(&threads[i], NULL, add, &nums[2]);
             if (rc) {
                 printf("Error: unable to create thread, %d\n", rc);
                 exit(-1);
             }
-        } else if (i == 1) {
+        } else if (i == 1) { //Calls subtract function
             rc = pthread_create(&threads[i], NULL, subtract, &nums[2]);
             if (rc) {
                 printf("Error: unable to create thread, %d\n", rc);
                 exit(-1);
             }
-        } else if (i == 2) {
+        } else if (i == 2) { //Calls multiply function
             rc = pthread_create(&threads[i], NULL, multiply, &nums[2]);
             if (rc) {
                 printf("Error: unable to create thread, %d\n", rc);
                 exit(-1);
             }
-        } else if (i == 3) {
+        } else if (i == 3) { //Calls division function
             rc = pthread_create(&threads[i], NULL, division, &nums[2]);
             if (rc) {
                 printf("Error: unable to create thread, %d\n", rc);
